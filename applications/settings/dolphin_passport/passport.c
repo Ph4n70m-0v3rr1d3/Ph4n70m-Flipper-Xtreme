@@ -54,13 +54,13 @@ static void render_callback(Canvas* canvas, void* _ctx) {
     } else {
         if(stats->butthurt <= 4) {
             portrait = xtreme_assets->I_passport_happy_46x49;
-            mood_str = "Mood: Happy";
+            mood_str = "Mood: Stoic";
         } else if(stats->butthurt <= 9) {
             portrait = xtreme_assets->I_passport_okay_46x49;
-            mood_str = "Mood: Okay";
+            mood_str = "Mood: Somber";
         } else {
             portrait = xtreme_assets->I_passport_bad_46x49;
-            mood_str = "Mood: Angry";
+            mood_str = "Mood: Solemn";
         }
     }
     uint32_t xp_progress = 0;
