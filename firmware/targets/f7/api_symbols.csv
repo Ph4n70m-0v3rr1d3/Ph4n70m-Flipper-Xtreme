@@ -40,8 +40,6 @@ Header,+,applications/services/power/power_service/power.h,,
 Header,+,applications/services/rgb_backlight/rgb_backlight.h,,
 Header,+,applications/services/rpc/rpc_app.h,,
 Header,+,applications/services/storage/storage.h,,
-Header,+,applications/services/xtreme/assets.h,,
-Header,+,applications/services/xtreme/settings.h,,
 Header,+,firmware/targets/f7/furi_hal/furi_hal_clock.h,,
 Header,+,firmware/targets/f7/furi_hal/furi_hal_console.h,,
 Header,+,firmware/targets/f7/furi_hal/furi_hal_flash.h,,
@@ -218,6 +216,7 @@ Header,+,lib/toolbox/tar/tar_archive.h,,
 Header,+,lib/toolbox/value_index.h,,
 Header,+,lib/toolbox/version.h,,
 Header,+,lib/u8g2/u8g2.h,,
+Header,+,lib/xtreme/xtreme.h,,
 Function,-,LL_ADC_CommonDeInit,ErrorStatus,ADC_Common_TypeDef*
 Function,-,LL_ADC_CommonInit,ErrorStatus,"ADC_Common_TypeDef*, LL_ADC_CommonInitTypeDef*"
 Function,-,LL_ADC_CommonStructInit,void,LL_ADC_CommonInitTypeDef*
@@ -322,10 +321,9 @@ Function,-,SK6805_update,void,
 Function,-,SystemCoreClockUpdate,void,
 Function,-,SystemInit,void,
 Function,+,XTREME_ASSETS,XtremeAssets*,
-Function,-,XTREME_ASSETS_LOAD,void,
 Function,+,XTREME_SETTINGS,XtremeSettings*,
-Function,-,XTREME_SETTINGS_LOAD,void,
-Function,+,XTREME_SETTINGS_SAVE,_Bool,
+Function,+,XTREME_SETTINGS_SAVE,void,
+Function,+,XTREME_SETTINGS_WAIT,XtremeSettings*,
 Function,-,_Exit,void,int
 Function,-,__assert,void,"const char*, int, const char*"
 Function,+,__assert_func,void,"const char*, int, const char*, const char*"
@@ -853,6 +851,7 @@ Function,+,elements_multiline_text_framed,void,"Canvas*, uint8_t, uint8_t, const
 Function,+,elements_progress_bar,void,"Canvas*, uint8_t, uint8_t, uint8_t, float"
 Function,+,elements_progress_bar_with_text,void,"Canvas*, uint8_t, uint8_t, uint8_t, float, const char*"
 Function,+,elements_scrollable_text_line,void,"Canvas*, uint8_t, uint8_t, uint8_t, FuriString*, size_t, _Bool, _Bool"
+Function,+,elements_scrollable_text_line_str,void,"Canvas*, uint8_t, uint8_t, uint8_t, const char*, size_t, _Bool, _Bool"
 Function,+,elements_scrollbar,void,"Canvas*, uint16_t, uint16_t"
 Function,+,elements_scrollbar_pos,void,"Canvas*, uint8_t, uint8_t, uint8_t, uint16_t, uint16_t"
 Function,+,elements_slightly_rounded_box,void,"Canvas*, uint8_t, uint8_t, uint8_t, uint8_t"
@@ -898,18 +897,20 @@ Function,-,fdopen,FILE*,"int, const char*"
 Function,-,felica_check_ic_type,_Bool,uint8_t*
 Function,-,felica_clear,void,FelicaData*
 Function,-,felica_define_normal_block,void,"FelicaService*, uint16_t, uint8_t*"
+Function,-,felica_estimate_timing_us,uint_least32_t,"uint_least8_t, uint_least8_t"
 Function,-,felica_get_ic_type,FelicaICType,uint8_t*
 Function,-,felica_get_service_name,FuriString*,FelicaService*
 Function,-,felica_get_system_name,FuriString*,FelicaSystem*
 Function,-,felica_lite_can_read_without_mac,_Bool,"uint8_t*, uint8_t"
+Function,-,felica_lite_dump_data,_Bool,"FuriHalNfcTxRxContext*, FelicaReader*, FelicaData*, FelicaSystem*"
 Function,-,felica_lite_prepare_unencrypted_read,uint8_t,"uint8_t*, const FelicaReader*, _Bool, const uint8_t*, uint8_t"
 Function,-,felica_lite_prepare_unencrypted_write,uint8_t,"uint8_t*, const FelicaReader*, const uint8_t*, uint8_t, const uint8_t*"
 Function,-,felica_parse_unencrypted_read,uint16_t,"uint8_t*, uint8_t, FelicaReader*, uint8_t*, uint16_t"
 Function,-,felica_parse_unencrypted_write,_Bool,"uint8_t*, uint8_t, FelicaReader*"
 Function,-,felica_prepare_unencrypted_read,uint8_t,"uint8_t*, const FelicaReader*, const uint16_t*, uint8_t, const uint32_t*, uint8_t"
 Function,-,felica_prepare_unencrypted_write,uint8_t,"uint8_t*, FelicaReader*, const uint16_t*, uint8_t, const uint32_t*, uint8_t, const uint8_t*"
+Function,-,felica_push_normal_block,void,"FelicaService*, uint8_t*"
 Function,-,felica_read_card,_Bool,"FuriHalNfcTxRxContext*, FelicaData*, uint8_t*, uint8_t*"
-Function,-,felica_read_lite_system,_Bool,"FuriHalNfcTxRxContext*, FelicaReader*, FelicaData*, FelicaSystem*"
 Function,-,feof,int,FILE*
 Function,-,feof_unlocked,int,FILE*
 Function,-,ferror,int,FILE*
@@ -1415,6 +1416,7 @@ Function,+,furi_hal_rtc_set_pin_fails,void,uint32_t
 Function,+,furi_hal_rtc_set_register,void,"FuriHalRtcRegister, uint32_t"
 Function,+,furi_hal_rtc_sync_shadow,void,
 Function,+,furi_hal_rtc_validate_datetime,_Bool,FuriHalRtcDateTime*
+Function,-,furi_hal_set_is_normal_boot,void,_Bool
 Function,+,furi_hal_speaker_acquire,_Bool,uint32_t
 Function,-,furi_hal_speaker_deinit,void,
 Function,-,furi_hal_speaker_init,void,

@@ -7,7 +7,7 @@
 #include <assets_icons.h>
 #include <portmacro.h>
 #include <locale/locale.h>
-#include <xtreme/assets.h>
+#include <xtreme.h>
 
 #include <desktop/desktop_settings.h>
 #include "../desktop_i.h"
@@ -309,5 +309,6 @@ bool desktop_view_locked_is_locked_hint_visible(DesktopViewLocked* locked_view) 
     DesktopViewLockedModel* model = view_get_model(locked_view->view);
     const DesktopViewLockedState view_state = model->view_state;
     view_commit_model(locked_view->view, false);
-    return view_state == DesktopViewLockedStateLockedHintShown;
+    return view_state == DesktopViewLockedStateLockedHintShown ||
+           view_state == DesktopViewLockedStateLocked;
 }
